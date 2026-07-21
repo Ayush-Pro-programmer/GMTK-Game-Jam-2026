@@ -1,2 +1,2 @@
-﻿using var game = new GMTK_Game_Jam.GameCore();
+using var game = new GMTK_Game_Jam.GameCore();
 game.Run();
