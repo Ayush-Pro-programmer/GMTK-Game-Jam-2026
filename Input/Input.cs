@@ -63,3 +63,4 @@ public static class Input
         _currentMouse.MiddleButton == ButtonState.Pressed &&
         _previousMouse.MiddleButton == ButtonState.Released;
 }
+

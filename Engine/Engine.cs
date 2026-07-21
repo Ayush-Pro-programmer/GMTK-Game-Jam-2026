@@ -49,6 +49,7 @@ namespace GMTK_Game_Jam.Engine
             if (Input.IsKeyPressed(Keys.Escape))
                 Exit();
 
+
             base.Update(gameTime);
         }
 
