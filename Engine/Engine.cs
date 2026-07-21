@@ -1,19 +1,31 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
-namespace GMTK_Game_Jam
+namespace GMTK_Game_Jam.Engine
 {
-    public class GameCore : Game
+    public class Engine : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        public GameCore()
+        public Engine()
         {
+            // window config
             _graphics = new GraphicsDeviceManager(this);
+
             Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            IsMouseVisible = EngineConfig.MouseVisible;
+
+            Window.Title = EngineConfig.WindowTitle;
+
+            _graphics.PreferredBackBufferWidth = EngineConfig.WindowWidth;
+            _graphics.PreferredBackBufferHeight = EngineConfig.WindowHeight;
+            _graphics.IsFullScreen = EngineConfig.FullScreen;
+            _graphics.SynchronizeWithVerticalRetrace = EngineConfig.VSync;
+
+            _graphics.ApplyChanges();
         }
 
         protected override void Initialize()
@@ -32,10 +44,10 @@ namespace GMTK_Game_Jam
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            Input.Update();
 
-            // TODO: Add your update logic here
+            if (Input.IsKeyPressed(Keys.Escape))
+                Exit();
 
             base.Update(gameTime);
         }
