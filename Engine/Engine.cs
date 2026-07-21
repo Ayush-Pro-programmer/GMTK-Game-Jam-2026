@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Diagnostics;
 
 namespace GMTK_Game_Jam.Engine
 {
@@ -37,9 +36,7 @@ namespace GMTK_Game_Jam.Engine
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            Graphics.Initialize(GraphicsDevice);
         }
 
         protected override void Update(GameTime gameTime)
@@ -55,9 +52,21 @@ namespace GMTK_Game_Jam.Engine
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            Graphics.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            Graphics.Begin();
+
+            //drawing goes here...
+
+            Graphics.DrawRectangle(
+               new Rectangle(100, 100, 200, 100),
+               Color.Red);
+
+            Graphics.DrawRectangleOutline(
+                new Rectangle(100, 100, 200, 100),
+                Color.White);
+
+            Graphics.End();
 
             base.Draw(gameTime);
         }
